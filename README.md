@@ -12,7 +12,7 @@ Vibe Spark 是一个 Claude Code skill，专为 vibe coder 设计的**灵感导�
 ## 安装
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/vibe-spark.git ~/.claude/skills/vibe-spark
+git clone https://github.com/HengYu2022/vibe-spark.git ~/.claude/skills/vibe-spark
 ```
 
 ## 使用
