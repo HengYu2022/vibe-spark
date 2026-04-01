@@ -23,11 +23,14 @@ description: 当用户不知道做什么项目、需要灵感、想找 side proj
 自动检测用户系统语言，用对应语言交流：
 
 ```bash
-defaults read -g AppleLanguages 2>/dev/null | head -3 || echo "en"
+# macOS
+defaults read -g AppleLanguages 2>/dev/null | head -3 || \
+# Linux / WSL: 检查 LANG 环境变量
+echo "${LANG:-en}"
 ```
 
-- 如果检测到 `zh`（中文）→ 用中文交流，技术术语保持英文
-- 其他语言 → 用英文交流
+- 如果输出包含 `zh`（中文）→ 用中文交流，技术术语保持英文
+- 其他 → 用英文交流
 
 灵感库内容目前是中文。如果用户语言不是中文，在展示灵感时自动翻译标题、一句话介绍和 wow factor。核心功能和第一步保持原文展示（技术内容翻译容易失真）。
 
@@ -36,6 +39,21 @@ defaults read -g AppleLanguages 2>/dev/null | head -3 || echo "en"
 按以下 Phase 顺序执行。
 
 ### Phase 0：上下文感知（自动执行，不跟用户交互）
+
+**Step 0：定位 skill 安装目录**
+
+灵感库在 skill 安装目录的 `ideas/` 下，不在用户当前工作目录。先找到 skill 目录：
+
+```bash
+VIBE_SPARK_DIR=""
+[ -d ~/.claude/skills/vibe-spark/ideas ] && VIBE_SPARK_DIR=~/.claude/skills/vibe-spark
+[ -z "$VIBE_SPARK_DIR" ] && [ -d .claude/skills/vibe-spark/ideas ] && VIBE_SPARK_DIR=.claude/skills/vibe-spark
+echo "SKILL_DIR: ${VIBE_SPARK_DIR:-NOT_FOUND}"
+```
+
+如果找不到，告诉用户：「灵感库没找到。请确认 vibe-spark 安装在 `~/.claude/skills/vibe-spark/`。」然后直接进入「我有自己的想法」路径（不依赖灵感库）。
+
+后续所有读取灵感库的命令都使用 `$VIBE_SPARK_DIR/ideas/` 作为基础路径。
 
 **Step 1：读取持久化数据**
 
@@ -98,13 +116,13 @@ cat ~/.vibe-spark/profile.jsonl 2>/dev/null | tail -10
 用 Glob 获取灵感库文件列表：
 
 ```bash
-find ideas/ -name "*.md" -type f
+find $VIBE_SPARK_DIR/ideas/ -name "*.md" -type f
 ```
 
 然后用 Bash 批量读取每个文件的 frontmatter（前 8 行）：
 
 ```bash
-for f in ideas/**/*.md; do echo "=== $f ==="; head -8 "$f"; done
+for f in $VIBE_SPARK_DIR/ideas/**/*.md; do echo "=== $f ==="; head -12 "$f"; done
 ```
 
 基于用户在 Phase 1 的选择，做两步过滤：
@@ -211,4 +229,4 @@ echo '{记录}' >> ~/.vibe-spark/profile.jsonl
 - 不要在 Phase 0 卡住。如果读取文件失败，直接走冷启动。
 - 不要一次展示超过 3 个灵感。信息过多会让用户选择困难。
 - 不要深度盘问用户。你是灵感导航员，不是产品经理。
-- 灵感库路径是相对于 skill 安装目录的 `ideas/` 文件夹。
+- 灵感库路径通过 Phase 0 Step 0 检测的 `$VIBE_SPARK_DIR/ideas/`，不要用相对路径。

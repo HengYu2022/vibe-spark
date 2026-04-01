@@ -136,7 +136,7 @@ description: 当用户不知道做什么项目、需要灵感、想找 side proj
 1. 匹配逻辑（两步过滤）：
    Step A — 文件发现 + 标签过滤：
             用 Glob 获取 ideas/**/*.md 文件路径列表，
-            用 Bash `head -8` 批量读取每个文件的 frontmatter（YAML 部分），
+            用 Bash `head -12` 批量读取每个文件的 frontmatter（YAML 部分），
             按用户选择的 difficulty + tags 过滤。
             （30 条灵感约 30 次 head 调用，可接受。若库超过 50 条，
             改为维护一个 ideas/index.json 汇总文件加速过滤。）
