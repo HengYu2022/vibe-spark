@@ -1,5 +1,7 @@
 # Vibe Spark ✨
 
+> Don't know what to build? Let Vibe Spark find your inspiration and get you started.
+>
 > 不知道做什么？让 Vibe Spark 帮你找到灵感，直接开工。
 
 Vibe Spark 是一个 Claude Code skill，专为 vibe coder 设计的**灵感导航员**。
