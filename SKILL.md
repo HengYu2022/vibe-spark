@@ -1,6 +1,6 @@
 ---
 name: vibe-spark
-description: 当用户不知道做什么项目、需要灵感、想找 side project idea、说「不知道做什么」「想 code 但没方向」时使用。Vibe coding 灵感导航员，帮你从零找到值得做的方向。
+description: Vibe coding inspiration navigator. Find your next project idea and start building.
 ---
 
 # Vibe Spark — Vibe Coding 灵感导航员
