@@ -1,0 +1,51 @@
+name: Validate Ideas
+
+on:
+  pull_request:
+    paths:
+      - 'ideas/**/*.md'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check idea frontmatter
+        run: |
+          errors=0
+          for f in ideas/**/*.md; do
+            [ -f "$f" ] || continue
+            fname=$(basename "$f" .md)
+
+            # Check required frontmatter fields
+            for field in "^id:" "^title:" "^tags:" "^difficulty:" "^time:" "^stack:" "^wow:"; do
+              if ! head -10 "$f" | grep -q "$field"; then
+                echo "ERROR: Missing $field in $f"
+                errors=$((errors+1))
+              fi
+            done
+
+            # Check required sections
+            for section in "## 一句话\|## One-liner" "## 为什么值得做\|## Why" "## 核心功能\|## Core Features" "## 第一步\|## First Step" "## 扩展方向\|## Extensions"; do
+              if ! grep -qE "$section" "$f"; then
+                echo "ERROR: Missing section matching '$section' in $f"
+                errors=$((errors+1))
+              fi
+            done
+
+            # Check id matches filename
+            id=$(head -10 "$f" | grep "^id:" | sed 's/id: //')
+            if [ "$id" != "$fname" ]; then
+              echo "ERROR: id '$id' does not match filename '$fname' in $f"
+              errors=$((errors+1))
+            fi
+          done
+
+          if [ $errors -gt 0 ]; then
+            echo ""
+            echo "$errors validation error(s) found."
+            exit 1
+          else
+            echo "All ideas validated successfully."
+          fi

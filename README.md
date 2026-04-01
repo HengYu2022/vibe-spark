@@ -51,11 +51,21 @@ Vibe Spark 会：
 - **具体的第一步**（读完就能开始写代码）
 - 扩展方向
 
-## 贡献灵感
+## Contributing
 
-欢迎提交 PR 贡献新灵感！请使用 `ideas/` 目录下的模板格式。
+We welcome contributions! The most valuable contribution is **new inspiration ideas**.
 
-质量标准：**读完「第一步」能立刻开始写代码，不需要额外搜索。**
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the full guide, templates, and quality checklist.
+
+Quick start:
+1. Fork → create `ideas/{category}/your-idea.md` → submit PR
+2. CI automatically validates your idea format
+3. Quality bar: "Can I start coding after reading the First Step?"
+
+You can also:
+- [Suggest an idea](https://github.com/HengYu2022/vibe-spark/issues/new?template=new-idea.md) via issue
+- [Report a bug](https://github.com/HengYu2022/vibe-spark/issues/new?template=bug-report.md)
+- [Suggest improvements](https://github.com/HengYu2022/vibe-spark/issues/new?template=improvement.md)
 
 ## License
 
