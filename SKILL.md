@@ -40,7 +40,7 @@ echo "${LANG:-en}"
 
 ### Phase 0：上下文感知（自动执行，不跟用户交互）
 
-**Step 0：定位 skill 安装目录**
+**Step 0：定位 skill 安装目录 + 更新检查**
 
 灵感库在 skill 安装目录的 `ideas/` 下，不在用户当前工作目录。先找到 skill 目录：
 
@@ -54,6 +54,28 @@ echo "SKILL_DIR: ${VIBE_SPARK_DIR:-NOT_FOUND}"
 如果找不到，告诉用户：「灵感库没找到。请确认 vibe-spark 安装在 `~/.claude/skills/vibe-spark/`。」然后直接进入「我有自己的想法」路径（不依赖灵感库）。
 
 后续所有读取灵感库的命令都使用 `$VIBE_SPARK_DIR/ideas/` 作为基础路径。
+
+**更新检查（后台静默，不阻塞工作流）：**
+
+```bash
+if [ -n "$VIBE_SPARK_DIR" ] && [ -d "$VIBE_SPARK_DIR/.git" ]; then
+  git -C "$VIBE_SPARK_DIR" fetch origin --quiet 2>/dev/null
+  _VS_LOCAL=$(git -C "$VIBE_SPARK_DIR" rev-parse HEAD 2>/dev/null)
+  _VS_REMOTE=$(git -C "$VIBE_SPARK_DIR" rev-parse origin/main 2>/dev/null)
+  if [ -n "$_VS_LOCAL" ] && [ -n "$_VS_REMOTE" ] && [ "$_VS_LOCAL" != "$_VS_REMOTE" ]; then
+    _VS_BEHIND=$(git -C "$VIBE_SPARK_DIR" rev-list HEAD..origin/main --count 2>/dev/null)
+    echo "UPDATE_AVAILABLE: ${_VS_BEHIND} new commits"
+  else
+    echo "UP_TO_DATE"
+  fi
+fi
+```
+
+如果输出 `UPDATE_AVAILABLE`，在进入 Phase 1 之前告诉用户：
+
+> 「Vibe Spark 有新版本（{N} 个更新）。新灵感和功能改进可能已发布。运行 `git -C ~/.claude/skills/vibe-spark pull` 更新。」
+
+不阻塞工作流，提示后继续正常执行。如果 fetch 失败（无网络），静默跳过。
 
 **Step 1：读取持久化数据**
 
