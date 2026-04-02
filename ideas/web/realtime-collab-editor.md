@@ -3,7 +3,7 @@ id: realtime-collab-editor
 title: 实时协作文本编辑器
 tags: [web, tool, social]
 difficulty: advanced
-time: 1week+
+time: 20h+
 stack: [Next.js, Yjs, WebSocket]
 wow: "Google Docs 的极简版，从零手搓 CRDT 协作"
 ---

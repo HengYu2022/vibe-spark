@@ -3,7 +3,7 @@ id: roguelike-dungeon
 title: 终端 Roguelike 地牢
 tags: [game, cli, creative]
 difficulty: advanced
-time: 1week+
+time: 20h+
 stack: [Node.js, blessed]
 wow: "在终端里探索随机生成的地牢，每次都不一样"
 ---

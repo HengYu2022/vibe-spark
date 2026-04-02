@@ -1,20 +1,17 @@
-# Changelog
-
-All notable changes to Vibe Spark will be documented in this file.
+# 更新日志
 
 ## [0.1.0] - 2026-04-02
 
-### Added
-- 35 curated inspiration ideas across 6 categories (AI, CLI, Creative, Game, Tool, Web)
-- 3 difficulty levels (beginner, intermediate, advanced)
-- Context-aware startup: detects your tech stack and project state
-- Persistent user preferences: remembers what you like, never re-recommends rejected ideas
-- Hot start for returning users with time-aware greetings (7-day vs 30-day)
-- Auto update check on startup (non-blocking)
-- i18n: auto-detects system language (Chinese / English)
-- Positive feedback at every step of the workflow
-- Card-format inspiration display with emoji indicators
-- Multiple user paths: browse library, bring your own idea, or continue previous session
-- Graceful error handling for all negative paths
-- GitHub community infrastructure: CONTRIBUTING.md, issue templates, PR template, CI validation
-- PROJECT_BRIEF.md and SPARK_IDEA.md output formats
+首个正式版本。
+
+### 你现在可以
+- 输入 `/vibe-spark`，获得 3 个根据你的技术栈精选的灵感
+- 说「我有自己的想法」，让它帮你把模糊想法整理成项目文档
+- 回访时自动记住你上次选了什么，不重复推荐否掉的灵感
+- 中英文自动切换（检测系统语言）
+- 每次启动自动检测新版本
+
+### 灵感库
+- 35 条精选灵感，覆盖 6 个方向（AI、CLI、Creative、Game、Tool、Web）
+- 3 个难度等级（beginner、intermediate、advanced）
+- 每条灵感都有具体的「第一步」，读完就能开工

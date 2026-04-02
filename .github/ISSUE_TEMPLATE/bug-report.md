@@ -18,4 +18,5 @@ assignees: ''
 **Environment:**
 - Claude Code version:
 - OS:
-- Shell:
+- Shell (zsh/bash):
+- Skill 安装路径 (默认 ~/.claude/skills/vibe-spark/):
