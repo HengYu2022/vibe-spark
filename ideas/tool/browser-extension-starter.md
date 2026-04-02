@@ -3,7 +3,7 @@ id: browser-extension-starter
 title: 浏览器扩展入门套件
 tags: [tool, web, browser-ext]
 difficulty: advanced
-time: 1week+
+time: 20h+
 stack: [TypeScript, Chrome Extensions API, Tailwind CSS]
 wow: "从零做一个真正能上架 Chrome Web Store 的浏览器扩展"
 ---

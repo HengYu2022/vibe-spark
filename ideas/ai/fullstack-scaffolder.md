@@ -3,7 +3,7 @@ id: fullstack-scaffolder
 title: AI 全栈脚手架
 tags: [ai, tool, cli]
 difficulty: advanced
-time: 1week+
+time: 20h+
 stack: [Node.js, Claude API]
 wow: "描述你想做什么，AI 直接生成整个项目结构和基础代码"
 ---

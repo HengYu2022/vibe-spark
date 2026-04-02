@@ -5,7 +5,7 @@ Vibe coding 灵感导航员。Claude Code skill，帮 vibe coder 从「不知道
 ## 项目结构
 
 - `SKILL.md` — Skill 定义和完整工作流
-- `ideas/` — 策展灵感库（按方向分类：ai, cli, creative, game, tool, web）
+- `ideas/` — 精选灵感库（按方向分类：ai, cli, creative, game, tool, web）
 - `examples/` — 示例输出文件
 - `DESIGN-v2.md` — 设计文档
 
