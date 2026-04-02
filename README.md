@@ -2,7 +2,7 @@
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Ideas](https://img.shields.io/badge/ideas-35-orange)
+![Ideas](https://img.shields.io/badge/ideas-40-orange)
 
 > Don't know what to build? Let Vibe Spark find your inspiration and get you started.
 >
@@ -11,7 +11,7 @@
 <!-- TODO: 录制 GIF demo 放在这里 -->
 <!-- ![demo](assets/demo.gif) -->
 
-你告诉它「我想做个 CLI 工具，有几小时时间」，它推给你 3 个精选灵感，帮你锁定方向，生成一份可以直接开工的项目文档。
+你告诉它「我在做 AI 周报，想做点新东西」，它根据你的背景生成 3 个专属方向，帮你锁定方向，生成一份可以直接开工的项目文档。不是给你一个菜单挑，而是真正理解你在做什么、然后为你定制。
 
 这是一个 [Claude Code](https://claude.ai/code) skill，一行命令安装。
 
@@ -19,9 +19,9 @@
 
 ## 特性
 
-- **上下文感知** — 检测你的技术栈和项目状态，推荐适合你的灵感
-- **精选灵感库** — 35 条灵感，每条都有具体的「第一步」，读完就能开工
-- **越用越懂你** — 记住你的偏好，不重复推荐你否掉的灵感
+- **个性化生成** — 根据你的背景和正在做的事，AI 实时生成专属方向，不是从固定菜单里挑
+- **越用越懂你** — 记住你的偏好，不重复推荐，越用越精准
+- **质量保证** — 40 条精选灵感作为 AI 的质量标杆，保证输出不滑坡
 - **中英文自动切换** — 检测系统语言，自动适配
 
 ## 安装
