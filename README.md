@@ -4,11 +4,13 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Ideas](https://img.shields.io/badge/ideas-40-orange)
 
-**你的效率引擎 + 灵感引擎。**
+> Repetition → Tools. Curiosity → Projects.
+>
+> 把重复变工具，把迷茫变方向。
 
 装一次，两件事自动发生：
 
-**1. 效率引擎** — 你正常用 Claude Code 工作，Vibe Spark 在后台静默观察。当它发现你在反复做同一类手动操作（3 次以上），主动帮你构思一个真正有用的效率工具：
+**1. 发现你的重复** — 你正常用 Claude Code 工作，Vibe Spark 在后台静默观察。当它发现你在反复做同一类手动操作（3 次以上），主动帮你构思一个真正有用的效率工具：
 
 ```
 （Claude 正常回复你的问题...）
@@ -18,7 +20,7 @@
 说「/vibe-spark」展开这个方向。
 ```
 
-**2. 灵感引擎** — 想 vibe coding 但不知道做什么？输入 `/vibe-spark`，告诉它你在做什么，它根据你的背景生成专属方向：
+**2. 找到你的方向** — 想 vibe coding 但不知道做什么？输入 `/vibe-spark`，告诉它你在做什么，它根据你的背景生成专属方向：
 
 ```
 你：「我在做 AI 周报和 Crypto 投研」
