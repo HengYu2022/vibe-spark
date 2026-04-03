@@ -1,6 +1,8 @@
 # Contributing to Vibe Spark
 
-Thanks for your interest in contributing! Vibe Spark is a community-driven project, and the most valuable contribution is **new inspiration ideas**.
+Thanks for your interest in contributing! Issues and PR descriptions are welcome in either Chinese or English.
+
+Vibe Spark is a community-driven project, and the most valuable contribution is **new inspiration ideas**. The idea library serves as AI's quality benchmark (few-shot examples) — the more representative your contribution, the better AI-generated directions become.
 
 ## How to Contribute an Idea
 
