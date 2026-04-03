@@ -4,19 +4,30 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Ideas](https://img.shields.io/badge/ideas-40-orange)
 
-> It watches you work. When it spots you doing the same thing over and over, it suggests a project to automate it.
+> Your AI coding buddy that notices what you keep doing manually — and suggests a project to fix it.
 >
-> 它在你工作时静默观察。当发现你反复做同一类事时，主动建议一个项目方向。
+> 你的 AI 编程搭子。它会注意到你反复手动做的事，然后建议你做成一个项目。
 
-## 它跟直接问 Claude 有什么不同？
+你正在用 Claude Code 写第三次 RSS 抓取脚本。突然，回复末尾多了一行：
 
-你可以直接跟 Claude 说「给我推荐个项目方向」。但 Claude 不会：
+```
+✨ Vibe Spark: 你这个 session 已经手动抓了 3 次 RSS 数据。
+要不要做一个自动情报聚合器？大概 4 小时就能搞定。
+```
 
-- **主动观察你的工作模式** — Vibe Spark 在你正常 coding 时静默运行，发现你在重复做某件事时主动建议
+**这就是 Vibe Spark。** 它在你工作时静默运行，发现重复模式时主动建议。你不需要停下来想「做什么项目」，灵感会在工作中自然出现。
+
+---
+
+## 为什么不直接问 Claude？
+
+你可以。但 Claude 不会：
+
+- **主动观察你** — Vibe Spark 每 20 条消息自动检查一次，发现你在重复做某件事就建议
 - **记住你的偏好** — 跨 session 积累，不重复推荐，越用越精准
-- **保证建议质量** — 40 条精选灵感作为 AI 的质量标杆
+- **控制建议质量** — 40 条精选灵感作为 AI 的质量标杆，输出不滑坡
 
-**Vibe Spark 是唯一一个会在你工作时主动说「嘿，这个可以自动化」的 Claude Code skill。**
+**没有任何 Claude Code skill 会在你工作时主动说「嘿，这个可以自动化」。Vibe Spark 是第一个。**
 
 ## 它看什么？不看什么？
 
