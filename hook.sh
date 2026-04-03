@@ -21,6 +21,12 @@ LAST_WEEKLY_TS=$(cat "$LAST_WEEKLY" 2>/dev/null || echo 0)
 DAYS_SINCE_WEEKLY=$(( (NOW - LAST_WEEKLY_TS) / 86400 ))
 
 if [ "$DAYS_SINCE_WEEKLY" -ge 7 ] && [ $((COUNT % 20)) -eq 0 ]; then
+  # 先检查活动量：少于 5 个 commit 就不触发周报，完全静默
+  WEEKLY_COMMIT_COUNT=$(git log --oneline --since="7 days ago" 2>/dev/null | wc -l | tr -d ' ')
+  if [ "$WEEKLY_COMMIT_COUNT" -lt 5 ]; then
+    # 活动量不足，重置计时但不输出任何内容
+    echo $NOW > "$LAST_WEEKLY"
+  else
   # 触发周报
   echo $NOW > "$LAST_WEEKLY"
 
@@ -53,8 +59,10 @@ $WEEKLY_PROFILE
 [重复模式发现]
 💡 建议：[1-2 个灵感]
 
-如果 git 数据为空或太少（少于 3 条 commit），不要输出周报，只在末尾加一行：[📊 Vibe Spark: 本周数据不足，下周见]
+如果数据中没有明显的重复模式，只展示工作方向分布，不要硬编灵感建议。
 WEEKLY
+
+  fi # WEEKLY_COMMIT_COUNT 检查结束
 
 # 周报触发时不再触发普通观察
 elif [ $((COUNT % 20)) -eq 0 ]; then
