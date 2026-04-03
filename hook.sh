@@ -76,6 +76,12 @@ elif [ $((COUNT % 20)) -eq 0 ]; then
   # 升级 2：跨 session 历史
   CROSS_SESSION=$(cat "$VIBE_DIR/profile.jsonl" 2>/dev/null | tail -5)
 
+  # 如果所有证据都为空（空目录 + 无 git + 无历史），不注入任何内容
+  if [ -z "$EVIDENCE_GIT" ] && [ -z "$EVIDENCE_FILES" ] && [ -z "$EVIDENCE_RECENT" ] && [ -z "$CROSS_SESSION" ]; then
+    # 完全没有数据，静默跳过
+    true
+  else
+
   # 第一次触发时附存在确认
   FIRST_TIME_NOTE=""
   if [ "$COUNT" -eq 20 ]; then
@@ -118,4 +124,6 @@ $FIRST_TIME_NOTE
 
 这个 session 中最多给 2 次灵感建议。如果你之前已经在这个对话中给过 2 次 ✨ Vibe Spark 建议了，不要再建议。
 SPARK
+
+  fi # 证据非空检查结束
 fi
