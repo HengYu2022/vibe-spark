@@ -1,120 +1,113 @@
 # Vibe Spark ✨
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.2.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Ideas](https://img.shields.io/badge/ideas-40-orange)
 
-> Don't know what to build? Let Vibe Spark find your inspiration and get you started.
+> It watches you work. When it spots you doing the same thing over and over, it suggests a project to automate it.
 >
-> 不知道做什么？让 Vibe Spark 帮你找到灵感，直接开工。
+> 它在你工作时静默观察。当发现你反复做同一类事时，主动建议一个项目方向。
 
-<!-- TODO: 录制 GIF demo 放在这里 -->
+<!-- TODO: 录制 GIF demo -->
 <!-- ![demo](assets/demo.gif) -->
 
-你告诉它「我在做 AI 周报，想做点新东西」，它根据你的背景生成 3 个专属方向，帮你锁定方向，生成一份可以直接开工的项目文档。不是给你一个菜单挑，而是真正理解你在做什么、然后为你定制。
+## 它跟直接问 Claude 有什么不同？
 
-这是一个 [Claude Code](https://claude.ai/code) skill，一行命令安装。
+你可以直接跟 Claude 说「给我推荐个项目方向」。但 Claude 不会：
 
----
+- **主动观察你的工作模式** — Vibe Spark 在你正常 coding 时静默运行，发现你在重复做某件事时主动建议
+- **记住你的偏好** — 跨 session 积累，不重复推荐，越用越精准
+- **保证建议质量** — 40 条精选灵感作为 AI 的质量标杆
 
-## 特性
+**Vibe Spark 是唯一一个会在你工作时主动说「嘿，这个可以自动化」的 Claude Code skill。**
 
-- **个性化生成** — 根据你的背景和正在做的事，AI 实时生成专属方向，不是从固定菜单里挑
-- **越用越懂你** — 记住你的偏好，不重复推荐，越用越精准
-- **质量保证** — 40 条精选灵感作为 AI 的质量标杆，保证输出不滑坡
-- **中英文自动切换** — 检测系统语言，自动适配
+## 它看什么？不看什么？
+
+- **看什么：** 只看一个数字（消息计数器）。每 20 条消息让 Claude 回顾一下对话历史。
+- **不看什么：** 不记录你的消息内容，不记录代码，不上传任何数据。
+- **数据在哪：** `~/.vibe-spark/` 目录，只有计数器文件。你可以随时删掉。
+
+零隐私风险。Claude 本身已经有对话上下文，Vibe Spark 只是提醒它「顺便看看有没有值得建议的」。
 
 ## 安装
 
-**前置条件：** [Claude Code](https://claude.ai/code)
-
 ```bash
+# 1. 安装 skill
 git clone https://github.com/HengYu2022/vibe-spark.git ~/.claude/skills/vibe-spark
+
+# 2. 配置被动观察（可选但推荐）
+bash ~/.claude/skills/vibe-spark/install.sh
 ```
 
-**验证安装：** 在 Claude Code 中输入 `/vibe-spark`，看到欢迎横幅即安装成功。
+不配 hook 也能用 `/vibe-spark` 手动获取灵感。配了 hook 才有「被动观察 + 主动建议」的体验。
 
-**更新：**
-```bash
-git -C ~/.claude/skills/vibe-spark pull
-```
+**验证安装：** 重启 Claude Code，正常工作。发 20 条消息后会看到 `[✨ Vibe Spark 已激活]`。
 
 **卸载：**
 ```bash
-rm -rf ~/.claude/skills/vibe-spark ~/.vibe-spark
+bash ~/.claude/skills/vibe-spark/uninstall.sh
 ```
 
-## 使用
+## 两种使用方式
 
-在 Claude Code 里输入：
+### 方式 1：被动观察（推荐）
+
+正常工作就好。Vibe Spark 在后台静默运行。当它发现你在重复做某件事时：
+
+```
+（你的正常回复内容...）
+
+✨ Vibe Spark: 你这个 session 里已经手动整理了 3 次 RSS 数据。
+要不要做一个自动情报聚合器？大概 4 小时就能搞定。
+说「/vibe-spark」我帮你展开这个方向。
+```
+
+每个 session 最多建议 2 次，不会刷屏。大部分时间你完全感知不到它的存在。
+
+### 方式 2：主动触发
 
 ```
 /vibe-spark
 ```
 
-Vibe Spark 会：
-1. 检测你的环境和偏好
-2. 推荐 3 个适合你的灵感
-3. 帮你锁定方向
-4. 生成 `PROJECT_BRIEF.md`，直接开工
-
-示例输出：[PROJECT_BRIEF.md](examples/PROJECT_BRIEF.md) · [SPARK_IDEA.md](examples/SPARK_IDEA.md)
+告诉它你在做什么，它根据你的背景生成 3 个专属方向。
 
 ## 灵感库
 
-灵感按方向分类：
+40 条精选灵感，覆盖练手项目和真实产品方向：
 
 | 方向 | 数量 | 示例 |
 |------|------|------|
-| AI | 7 | 周报生成器、Prompt 调试器、AI 命名大师 |
-| CLI | 5 | 时间追踪器、天气 CLI、Git commit 诗人 |
-| Web | 7 | Emoji 密码锁、番茄钟 + Lo-fi、会议成本计算器 |
-| Game | 5 | 打字竞速、贪吃蛇 AI、Roguelike 地牢 |
-| Tool | 7 | README 生成器、正则练功房、JSON 可视化器 |
-| Creative | 4 | ASCII 艺术生成器、音乐可视化、像素画编辑器 |
+| AI | 9 | 情报日报、会议纪要、Prompt 调试器 |
+| CLI | 5 | 时间追踪器、发票生成器 |
+| Web | 7 | 番茄钟 + Lo-fi、匿名吐槽墙 |
+| Game | 5 | 打字竞速、Roguelike 地牢 |
+| Tool | 10 | Star 趋势追踪、Side Project 监控 |
+| Creative | 4 | 音乐可视化、生成式艺术 |
 
-每条灵感都包含：
-- 一句话介绍 + wow factor
-- 为什么值得做
-- 核心功能（3 条）
-- **具体的第一步**（读完就能开始写代码）
-- 扩展方向
+灵感库在 v2 中作为 AI 生成方向的质量标杆（few-shot 示例），不只是给你挑的列表。
 
 ## 贡献
 
-最有价值的贡献是**新的灵感条目**。
+最有价值的贡献是**新的灵感条目**。灵感库是 AI 生成方向的质量标杆，贡献的灵感越有代表性，AI 生成的方向质量越高。
 
-详见 **[CONTRIBUTING.md](CONTRIBUTING.md)**，包含完整的模板和质量标准。
+详见 **[CONTRIBUTING.md](CONTRIBUTING.md)**。
 
-快速开始：
-1. Fork → 在 `ideas/{分类}/` 下创建 `.md` 文件 → 提交 PR
-2. CI 自动验证格式
-3. 质量标准：**读完「第一步」能立刻开始写代码**
+## 关闭被动观察
 
-也可以：
-- [提交灵感建议](https://github.com/HengYu2022/vibe-spark/issues/new?template=new-idea.md)
-- [报告问题](https://github.com/HengYu2022/vibe-spark/issues/new?template=bug-report.md)
-- [建议改进](https://github.com/HengYu2022/vibe-spark/issues/new?template=improvement.md)
+不想被观察？两种方式：
 
-## 常见问题
-
-**输入 `/vibe-spark` 没反应？**
-确认安装路径正确：`ls ~/.claude/skills/vibe-spark/SKILL.md`。如果文件存在，重启 Claude Code 再试。
-
-**灵感库找不到？**
-skill 安装在 `~/.claude/skills/vibe-spark/`，灵感库在 `ideas/` 子目录。如果你用的是其他安装路径，skill 会自动降级为自由输入模式。
-
-**怎么更新到最新版本？**
 ```bash
-git -C ~/.claude/skills/vibe-spark pull
+# 方式 1：运行卸载脚本
+bash ~/.claude/skills/vibe-spark/uninstall.sh
+
+# 方式 2：只删 hook，保留 /vibe-spark 手动触发
+# 从 ~/.claude/settings.json 中移除 vibe-spark 的 hook 条目
 ```
-Vibe Spark 每次启动时也会自动检测更新并提醒你。
 
 ## 相关链接
 
-- [更新日志](CHANGELOG.md)
-- [安全政策](SECURITY.md)
-- [行为准则](CODE_OF_CONDUCT.md)
+- [更新日志](CHANGELOG.md) | [安全政策](SECURITY.md) | [行为准则](CODE_OF_CONDUCT.md)
 
 ## License
 
