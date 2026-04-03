@@ -46,6 +46,7 @@ else
   if grep -q "vibe-spark/hook.sh" "$SETTINGS_FILE" 2>/dev/null; then
     echo "✅ Hook 已经配置过了，跳过"
   else
+    HOOK_PENDING=true
     echo "⚠️  检测到已有 settings.json。请手动添加以下 hook 配置："
     echo ""
     echo "  在 ~/.claude/settings.json 的 hooks.UserPromptSubmit 数组中添加："
@@ -62,15 +63,27 @@ mkdir -p ~/.vibe-spark
 chmod +x "$SKILL_DIR/hook.sh"
 
 echo ""
-echo "  ╔══════════════════════════════════════════╗"
-echo "  ║  ✅ Vibe Spark 安装完成！                 ║"
-echo "  ║                                         ║"
-echo "  ║  两种使用方式：                           ║"
-echo "  ║  1. /vibe-spark → 主动获取灵感            ║"
-echo "  ║  2. 正常工作就好 → 当我发现你在           ║"
-echo "  ║     重复做某件事时，会悄悄建议             ║"
-echo "  ║                                         ║"
-echo "  ║  关闭被动观察：运行 uninstall.sh          ║"
-echo "  ║  祝你 vibe coding 愉快 ✨                ║"
-echo "  ╚══════════════════════════════════════════╝"
+if [ "$HOOK_PENDING" = true ]; then
+  echo "  ╔══════════════════════════════════════════╗"
+  echo "  ║  ⚠️  Vibe Spark 部分安装完成              ║"
+  echo "  ║                                         ║"
+  echo "  ║  /vibe-spark 手动触发 → ✅ 可用           ║"
+  echo "  ║  被动观察模式 → ❌ 需手动配置 hook        ║"
+  echo "  ║  （见上方说明）                           ║"
+  echo "  ║                                         ║"
+  echo "  ║  祝你 vibe coding 愉快 ✨                ║"
+  echo "  ╚══════════════════════════════════════════╝"
+else
+  echo "  ╔══════════════════════════════════════════╗"
+  echo "  ║  ✅ Vibe Spark 安装完成！                 ║"
+  echo "  ║                                         ║"
+  echo "  ║  两种使用方式：                           ║"
+  echo "  ║  1. /vibe-spark → 主动获取灵感            ║"
+  echo "  ║  2. 正常工作就好 → 当我发现你在           ║"
+  echo "  ║     重复做某件事时，会悄悄建议             ║"
+  echo "  ║                                         ║"
+  echo "  ║  关闭被动观察：运行 uninstall.sh          ║"
+  echo "  ║  祝你 vibe coding 愉快 ✨                ║"
+  echo "  ╚══════════════════════════════════════════╝"
+fi
 echo ""

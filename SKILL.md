@@ -150,7 +150,7 @@ echo "${LANG:-en}"
 cat "$VIBE_SPARK_DIR/VERSION" 2>/dev/null || echo "unknown"
 ```
 
-输出欢迎横幅（横幅右下角附版本号，如 `v0.1.0`），然后输出 `🔍 正在感知你的环境...`
+输出欢迎横幅（横幅右下角附版本号，从 VERSION 文件读取），然后输出 `🔍 正在感知你的环境...`
 
 **Step 0：定位 skill 安装目录 + 更新检查**
 
