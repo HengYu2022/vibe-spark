@@ -82,6 +82,7 @@ else
   echo "  ║  2. 正常工作就好 → 当我发现你在           ║"
   echo "  ║     重复做某件事时，会悄悄建议             ║"
   echo "  ║                                         ║"
+  echo "  ║  验证 hook：bash $SKILL_DIR/hook.sh --test║"
   echo "  ║  关闭被动观察：运行 uninstall.sh          ║"
   echo "  ║  祝你 vibe coding 愉快 ✨                ║"
   echo "  ╚══════════════════════════════════════════╝"

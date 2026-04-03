@@ -6,6 +6,24 @@
 VIBE_DIR=~/.vibe-spark
 mkdir -p "$VIBE_DIR"
 
+# === --test 模式：安装后立即验证 hook 是否生效 ===
+if [ "$1" = "--test" ]; then
+  echo "✅ Vibe Spark hook 已生效！"
+  echo ""
+  echo "当前状态："
+  PROFILE_COUNT=$(wc -l < "$VIBE_DIR/profile.jsonl" 2>/dev/null | tr -d ' ' || echo 0)
+  echo "  📊 历史记录：${PROFILE_COUNT} 条"
+  GIT_COUNT=$(git log --oneline -10 2>/dev/null | wc -l | tr -d ' ')
+  echo "  📝 Git commits（最近 10 条）：${GIT_COUNT} 条"
+  FILES_COUNT=$(ls 2>/dev/null | wc -l | tr -d ' ')
+  echo "  📁 当前目录文件：${FILES_COUNT} 个"
+  echo ""
+  echo "Vibe Spark 会在你正常工作时静默观察。"
+  echo "每 20 条消息分析一次工作模式，发现重复时主动建议。"
+  echo "输入 /vibe-spark 随时获取灵感。"
+  exit 0
+fi
+
 # === Session 级计数器 ===
 SESSION_COUNTER="$VIBE_DIR/counter-$PPID"
 find "$VIBE_DIR" -name "counter-*" -mmin +1440 -delete 2>/dev/null

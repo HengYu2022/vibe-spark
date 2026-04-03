@@ -3,6 +3,7 @@
 ![Version](https://img.shields.io/badge/version-0.3.0-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Ideas](https://img.shields.io/badge/ideas-40-orange)
+[![English](https://img.shields.io/badge/lang-English-blue)](README_EN.md)
 
 > Repetition → Tools. Curiosity → Projects.
 >
@@ -74,7 +75,12 @@ bash ~/.claude/skills/vibe-spark/install.sh
 
 不配 hook 也能用 `/vibe-spark` 手动获取灵感。配了 hook 才有「被动观察 + 主动建议」的体验。
 
-**验证安装：** 重启 Claude Code，正常工作。发 20 条消息后会看到 `[✨ Vibe Spark 已激活]`。
+**验证安装：**
+```bash
+bash ~/.claude/skills/vibe-spark/hook.sh --test
+```
+
+看到 `✅ Vibe Spark hook 已生效！` 就说明安装成功。重启 Claude Code 即可开始使用。
 
 **卸载：**
 ```bash
