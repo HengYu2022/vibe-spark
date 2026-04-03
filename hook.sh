@@ -10,22 +10,17 @@ mkdir -p "$VIBE_DIR"
 # Session 级计数器：用 Claude Code 的 PPID 区分 session
 # 每个 session 有独立的计数器文件
 SESSION_COUNTER="$VIBE_DIR/counter-$PPID"
-SESSION_SUGGESTS="$VIBE_DIR/suggests-$PPID"
 
 # 清理过期的 session 计数器（超过 24 小时的）
 find "$VIBE_DIR" -name "counter-*" -mmin +1440 -delete 2>/dev/null
-find "$VIBE_DIR" -name "suggests-*" -mmin +1440 -delete 2>/dev/null
 
 # 递增当前 session 计数器
 COUNT=$(cat "$SESSION_COUNTER" 2>/dev/null || echo 0)
 COUNT=$((COUNT + 1))
 echo $COUNT > "$SESSION_COUNTER"
 
-# 本 session 已建议次数
-SUGGESTS=$(cat "$SESSION_SUGGESTS" 2>/dev/null || echo 0)
-
 # 第一次触发时（第 20 条消息），给一个存在确认
-if [ "$COUNT" -eq 20 ] && [ "$SUGGESTS" -eq 0 ]; then
+if [ "$COUNT" -eq 20 ]; then
   # 首次触发：确认 hook 在工作 + 检查模式
   cat << 'SPARK'
 【Vibe Spark 正在观察中...】回顾这个 session 的对话历史，看用户有没有在重复做类似的手动操作（3 次以上）。
@@ -42,8 +37,10 @@ if [ "$COUNT" -eq 20 ] && [ "$SUGGESTS" -eq 0 ]; then
 - 看到输出就知道成功了（不需要读代码验证）
 
 如果没发现重复模式，只在回复末尾加一行小字：[✨ Vibe Spark 已激活，正在观察你的工作模式]
+
+重要：这个 session 中最多给 2 次灵感建议。如果你已经给过 2 次了，即使发现新模式也不要再建议。
 SPARK
-elif [ $((COUNT % 20)) -eq 0 ] && [ "$SUGGESTS" -lt 2 ]; then
+elif [ $((COUNT % 20)) -eq 0 ]; then
   # 后续触发：只检查模式，不再确认存在
   cat << 'SPARK'
 【Vibe Spark 灵感观察】回顾这个 session 的对话历史，看用户有没有在重复做类似的手动操作（3 次以上）。
@@ -60,5 +57,7 @@ elif [ $((COUNT % 20)) -eq 0 ] && [ "$SUGGESTS" -lt 2 ]; then
 - 看到输出就知道成功了
 
 如果没发现重复模式，什么都不加，也不要提 Vibe Spark。
+
+重要：这个 session 中最多给 2 次灵感建议。如果你已经给过 2 次了，即使发现新模式也不要再建议。
 SPARK
 fi
