@@ -1,6 +1,6 @@
 ---
 name: vibe-spark
-description: Vibe coding inspiration navigator. Find your next project idea and start building.
+description: Silently watches your work. When you repeat manual tasks 3+ times, suggests a project to automate it. Also /vibe-spark for personalized project ideas based on your context.
 ---
 
 # Vibe Spark — Vibe Coding 灵感引擎

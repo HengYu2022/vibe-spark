@@ -4,30 +4,46 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Ideas](https://img.shields.io/badge/ideas-40-orange)
 
-> Your AI coding buddy that notices what you keep doing manually — and suggests a project to fix it.
->
-> 你的 AI 编程搭子。它会注意到你反复手动做的事，然后建议你做成一个项目。
+**你的效率引擎 + 灵感引擎。**
 
-你正在用 Claude Code 写第三次 RSS 抓取脚本。突然，回复末尾多了一行：
+装一次，两件事自动发生：
+
+**1. 效率引擎** — 你正常用 Claude Code 工作，Vibe Spark 在后台静默观察。当它发现你在反复做同一类手动操作（3 次以上），主动帮你构思一个真正有用的效率工具：
 
 ```
-✨ Vibe Spark: 你这个 session 已经手动抓了 3 次 RSS 数据。
+（Claude 正常回复你的问题...）
+
+✨ Vibe Spark: 你这个 session 已经手动整理了 3 次 RSS 数据。
 要不要做一个自动情报聚合器？大概 4 小时就能搞定。
+说「/vibe-spark」展开这个方向。
 ```
 
-**这就是 Vibe Spark。** 它在你工作时静默运行，发现重复模式时主动建议。你不需要停下来想「做什么项目」，灵感会在工作中自然出现。
+**2. 灵感引擎** — 想 vibe coding 但不知道做什么？输入 `/vibe-spark`，告诉它你在做什么，它根据你的背景生成专属方向：
+
+```
+你：「我在做 AI 周报和 Crypto 投研」
+
+Vibe Spark：
+  1. Crypto 情报聚合器 — 自动从 20 个信源抓取要闻
+  2. 周报模板引擎 — 把你的周报流程产品化
+  3. Token 用量看板 — 可视化你每天的 AI 花费
+```
+
+不是从固定列表挑，是根据**你的真实背景**定制。
 
 ---
 
-## 为什么不直接问 Claude？
+## 这个跟直接问 Claude 有什么区别？
 
-你可以。但 Claude 不会：
+直接问 Claude「给我推荐个项目」当然可以。但有三件事 Claude 做不到：
 
-- **主动观察你** — Vibe Spark 每 20 条消息自动检查一次，发现你在重复做某件事就建议
-- **记住你的偏好** — 跨 session 积累，不重复推荐，越用越精准
-- **控制建议质量** — 40 条精选灵感作为 AI 的质量标杆，输出不滑坡
+| Claude 做不到的 | Vibe Spark 做到了 |
+|---------------|-----------------|
+| 在你工作时**主动**跳出来说「这个可以自动化」 | 通过 hook 每 20 条消息自动检测重复模式 |
+| 记住你上周否掉了什么、偏好什么方向 | 跨 session 持久化偏好，越用越精准 |
+| 保证每次推荐的格式和质量一致 | 40 条精选灵感作为 AI 的质量标杆 |
 
-**没有任何 Claude Code skill 会在你工作时主动说「嘿，这个可以自动化」。Vibe Spark 是第一个。**
+**效率引擎（被动观察）是 Vibe Spark 独有的能力，没有任何其他 skill 能做到。**
 
 ## 它看什么？不看什么？
 
