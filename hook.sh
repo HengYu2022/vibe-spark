@@ -20,7 +20,7 @@ NOW=$(date +%s)
 LAST_WEEKLY_TS=$(cat "$LAST_WEEKLY" 2>/dev/null || echo 0)
 DAYS_SINCE_WEEKLY=$(( (NOW - LAST_WEEKLY_TS) / 86400 ))
 
-if [ "$DAYS_SINCE_WEEKLY" -ge 7 ] && [ "$COUNT" -eq 20 ]; then
+if [ "$DAYS_SINCE_WEEKLY" -ge 7 ] && [ $((COUNT % 20)) -eq 0 ]; then
   # 触发周报
   echo $NOW > "$LAST_WEEKLY"
 
