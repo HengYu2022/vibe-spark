@@ -2,3 +2,4 @@ node_modules/
 .next/
 .gstack/
 .context/
+.claude/settings.local.json
